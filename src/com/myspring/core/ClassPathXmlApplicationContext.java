@@ -86,10 +86,11 @@ public class ClassPathXmlApplicationContext implements ApplicationContext{
                 StringBuilder buffer = new StringBuilder("set");
                 buffer.append(propName.substring(0,1).toUpperCase());
                 buffer.append(propName.substring(1));
-
                 String setterMethodName = buffer.toString();
+
                 Field field = clazz.getDeclaredField(propName);
                 Method setMethod = clazz.getDeclaredMethod(setterMethodName,field.getType());
+               // System.out.println(field.getType().getName());
                 if("int".equals(field.getType().getName())){
                     setMethod.invoke(obj,Integer.parseInt(propValue));
                 }else if("java.lang.String".equals(field.getType().getName())){
